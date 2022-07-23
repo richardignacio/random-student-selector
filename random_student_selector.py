@@ -1,5 +1,8 @@
-#TODO Document with docstring for program
+# TODO Document with docstring for program
+import datetime
 import random
+
+
 try:
     from student_list import students
 except ModuleNotFoundError as exc:
@@ -23,20 +26,27 @@ def choose_acceptable_student(students_list):
         try:
             student = choose_random_student(students_list)
         except IndexError:
-            #TODO use sys.exit or raise custom exception
+            # TODO use sys.exit or raise custom exception
             print("No students left to choose in the student list")
             exit()
         accept = input(f"The student chosen is : {student}. Accept? (Y/N): ")
         students_list.remove(student)
     return student, students_list
 
-#TODO function to log history
+# TODO function to log history
 
-#TODO check for __main__
+
+# TODO check for __main__
+print("\nNow choosing navigator...")
 navigator, updated_student_list = choose_acceptable_student(students)
+print("Now choosing operator...\n")
 operator, updated_student_list = choose_acceptable_student(updated_student_list)
 
-print(f"Navigator: {navigator}")
+# (datetime),navigator:(navigator),operator:(operator)
+datetime_stamp = datetime.datetime.now()
+with open("history.log", "a") as history_file:
+    history_file.write(f"{datetime_stamp},NAVIGATOR:{navigator},OPERATOR:{operator}\n")
+print(f"\nNavigator: {navigator}")
 print(f"Operator: {operator}")
 
 
