@@ -7,18 +7,18 @@ def choose_random_student(students_list):
     return student
 
 
-# Main
-accept = "n"
-while accept.lower() == 'n':
-    navigator = choose_random_student(students)
-    accept = input(f"The navigator chosen is : {navigator}. Accept? (Y/N): ")
-    students.remove(navigator)
+def choose_acceptable_student(students_list):
+    accept = "n"
+    student = ""
+    while accept.lower() == 'n':
+        student = choose_random_student(students_list)
+        accept = input(f"The student chosen is : {student}. Accept? (Y/N): ")
+        students_list.remove(student)
+    return student, students_list
 
-accept = "n"
-while accept.lower() == 'n':
-    operator = choose_random_student(students)
-    accept = input(f"The operator chosen is : {operator}. Accept? (Y/N): ")
-    students.remove(operator)
+
+navigator, updated_student_list = choose_acceptable_student(students)
+operator, updated_student_list = choose_acceptable_student(updated_student_list)
 
 print(f"Navigator: {navigator}")
 print(f"Operator: {operator}")
