@@ -33,20 +33,18 @@ def choose_acceptable_student(students_list):
         students_list.remove(student)
     return student, students_list
 
-# TODO function to log history
 
+if __name__ == "__main__":
+    print("\nNow choosing navigator...")
+    navigator, updated_student_list = choose_acceptable_student(students)
+    print("Now choosing operator...\n")
+    operator, updated_student_list = choose_acceptable_student(updated_student_list)
 
-# TODO check for __main__
-print("\nNow choosing navigator...")
-navigator, updated_student_list = choose_acceptable_student(students)
-print("Now choosing operator...\n")
-operator, updated_student_list = choose_acceptable_student(updated_student_list)
-
-# (datetime),navigator:(navigator),operator:(operator)
-datetime_stamp = datetime.datetime.now()
-with open("history.log", "a") as history_file:
-    history_file.write(f"{datetime_stamp},NAVIGATOR:{navigator},OPERATOR:{operator}\n")
-print(f"\nNavigator: {navigator}")
-print(f"Operator: {operator}")
+    # (datetime),navigator:(navigator),operator:(operator)
+    datetime_stamp = datetime.datetime.now()
+    with open("history.log", "a") as history_file:
+        history_file.write(f"{datetime_stamp},NAVIGATOR:{navigator},OPERATOR:{operator}\n")
+    print(f"\nNavigator: {navigator}")
+    print(f"Operator: {operator}")
 
 
